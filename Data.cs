@@ -9,7 +9,7 @@
         public int weight { get; set; }
         public StringTranslations genus { get; set; }
         public StringTranslations description { get; set; }
-        private List<Statistic> stats { get; set; }
+        public List<Statistic> stats { get; set; }
         public int lastEdit { get; set; }
     }
 }
