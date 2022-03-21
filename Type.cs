@@ -25,7 +25,16 @@
         public List<Statistic> GetStatistics()
         {
             var statistics = this.GetPokemons()
-                .SelectMany(p => p.Statistics)
+                .SelectMany(p =>
+                    {
+                        var pokemonStatistics = p.Statistics;
+                        
+                        pokemonStatistics.Insert(0, new Statistic("height", p.Height));
+                        pokemonStatistics.Insert(1, new Statistic("weight", p.Weight));
+                        
+                        return pokemonStatistics;
+                    }
+                )
                 .ToList();
 
             var averageStatistics = new List<Statistic>();

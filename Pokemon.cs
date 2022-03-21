@@ -34,6 +34,22 @@ namespace Pokedex
             }
         }
 
+        public int Height
+        {
+            get
+            {
+                return this.data.height;
+            }
+        }
+
+        public int Weight
+        {
+            get
+            {
+                return this.data.weight;
+            }
+        }
+
         public List<Statistic> Statistics
         {
             get
