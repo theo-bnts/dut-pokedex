@@ -4,6 +4,9 @@ namespace Pokedex
 {
     internal class ConsoleManager
     {
+        /// <summary>
+        /// Display and manage the panel.
+        /// </summary>
         public static void DisplayPanel()
         {
             int answer;
@@ -58,6 +61,10 @@ namespace Pokedex
             DisplayPanel();
         }
 
+        /// <summary>
+        /// Display a list of Pokemons.
+        /// </summary>
+        /// <param name="pokemons">The list of Pokemons</param>
         private static void DisplayPokemons(List<Pokemon> pokemons)
         {
             if (pokemons.Count == 0)
@@ -81,11 +88,18 @@ namespace Pokedex
             }
         }
 
+        /// <summary>
+        /// Display a single Pokemon.
+        /// </summary>
+        /// <param name="pokemon"></param>
         private static void DisplayPokemon(Pokemon pokemon)
         {
             DisplayPokemons(new List<Pokemon>() { pokemon });
         }
 
+        /// <summary>
+        /// Display a list of all pokemons.
+        /// </summary>
         private static void DisplayPokemons()
         {
             var pokemons = Pokemons.Get();
@@ -93,6 +107,9 @@ namespace Pokedex
             DisplayPokemons(pokemons);
         }
 
+        /// <summary>
+        /// Display a list of every Pokemons of a type.
+        /// </summary>
         private static void DisplayPokemonsOfType()
         {
             Console.WriteLine("Type of Pokemon:");
@@ -105,6 +122,9 @@ namespace Pokedex
             DisplayPokemons(typePokemons);
         }
 
+        /// <summary>
+        /// Display a list of every Pokemons of a generation.
+        /// </summary>
         private static void DisplayPokemonsOfGeneration()
         {
             Console.WriteLine("Generation of Pokemon:");
@@ -117,6 +137,9 @@ namespace Pokedex
             DisplayPokemons(generationPokemons);
         }
 
+        /// <summary>
+        /// Display a list of a Pokemon of each generation.
+        /// </summary>
         private static void DisplayAPokemonsOfEachGeneration()
         {
             var random = new Random();
@@ -135,6 +158,9 @@ namespace Pokedex
             }
         }
 
+        /// <summary>
+        /// Display a table of statistics for each type.
+        /// </summary>
         private static void DisplayStatsOnEachType()
         {
             var types = Type.GetAll();

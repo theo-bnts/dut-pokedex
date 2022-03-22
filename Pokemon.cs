@@ -66,6 +66,10 @@ namespace Pokedex
             }
         }
 
+        /// <summary>
+        /// Pokemon constructor.
+        /// </summary>
+        /// <param name="id">The Pokemon id</param>
         public Pokemon(int id)
         {
             this.data = Downloader.GetData(id);
@@ -73,7 +77,11 @@ namespace Pokedex
             this.generation = Pokedex.Generation.Get(id);
         }
 
-        public String CondensedDisplay()
+        /// <summary>
+        /// Return a string to display the Pokemon in the console.
+        /// </summary>
+        /// <returns>The text to display</returns>
+        public string CondensedDisplay()
         {
             return $"[{this.data.id}] {this.data.name.fr}";
         }

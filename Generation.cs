@@ -4,47 +4,19 @@
     {
         private int id;
 
+        /// <summary>
+        /// Generation constructor.
+        /// </summary>
+        /// <param name="id">The generation id</param>
         public Generation(int id)
         {
             this.id = id;
         }
 
-        private static int[,] GetRanges()
-        {
-            return new int[,] {
-                {   1, 151 },
-                { 152, 251 },
-                { 252, 386 },
-                { 387, 493 },
-                { 494, 649 },
-                { 650, 721 },
-                { 722, 802 },
-                { 803, 898 }
-            };
-        }
-
-        public static int GetCount()
-        {
-            return GetRanges().GetLength(0);
-        }
-
-        public static int Get(int id)
-        {
-            int generation = -1;
-
-            var ranges = GetRanges();
-
-            for (int i = 1; i <= GetCount(); i++)
-            {
-                if (id >= ranges[i - 1, 0] && id <= ranges[i - 1, 1])
-                {
-                    generation = i;
-                }
-            }
-
-            return generation;
-        }
-
+        /// <summary>
+        /// Get the range of the genration.
+        /// </summary>
+        /// <returns>The range of the genration</returns>
         private int[] GetRange()
         {
             var range = new int[2];
@@ -63,6 +35,10 @@
             return range;
         }
 
+        /// <summary>
+        /// Return if the generation pokemons are fully dowloaded.
+        /// </summary>
+        /// <returns>If the generation pokemons are fully dowloaded</returns>
         public bool IsDowloaded()
         {
             bool flag = true;
@@ -80,6 +56,10 @@
             return flag;
         }
 
+        /// <summary>
+        /// Get all Pokemons of this generation.
+        /// </summary>
+        /// <returns>The Pokemons of this generation</returns>
         public List<Pokemon> GetPokemons()
         {
             if (this.IsDowloaded())
@@ -102,6 +82,55 @@
 
                 return pokemons;
             }
+        }
+
+        /// <summary>
+        /// Get the range of each generation.
+        /// </summary>
+        /// <returns>The ranges</returns>
+        private static int[,] GetRanges()
+        {
+            return new int[,] {
+                {   1, 151 },
+                { 152, 251 },
+                { 252, 386 },
+                { 387, 493 },
+                { 494, 649 },
+                { 650, 721 },
+                { 722, 802 },
+                { 803, 898 }
+            };
+        }
+
+        /// <summary>
+        /// Get the generations count.
+        /// </summary>
+        /// <returns>The generations count</returns>
+        public static int GetCount()
+        {
+            return GetRanges().GetLength(0);
+        }
+
+        /// <summary>
+        /// Get the generation of a Pokemon.
+        /// </summary>
+        /// <param name="id">The Pokemon id</param>
+        /// <returns>The generation id</returns>
+        public static int Get(int id)
+        {
+            int generation = -1;
+
+            var ranges = GetRanges();
+
+            for (int i = 1; i <= GetCount(); i++)
+            {
+                if (id >= ranges[i - 1, 0] && id <= ranges[i - 1, 1])
+                {
+                    generation = i;
+                }
+            }
+
+            return generation;
         }
     }
 }

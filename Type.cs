@@ -9,11 +9,19 @@
             get { return name; }
         }
 
+        /// <summary>
+        /// Type constructor.
+        /// </summary>
+        /// <param name="name">The name of the type</param>
         public Type(string name)
         {
             this.name = name.ToLower();
         }
 
+        /// <summary>
+        /// Get all Pokemons of this type.
+        /// </summary>
+        /// <returns>The list of Pokemons</returns>
         public List<Pokemon> GetPokemons()
         {
             return Pokemons
@@ -22,6 +30,10 @@
                 .ToList();
         }
 
+        /// <summary>
+        /// Get all statistics for this type.
+        /// </summary>
+        /// <returns>The list of statistics</returns>
         public List<Statistic> GetStatistics()
         {
             var statistics = this.GetPokemons()
@@ -29,6 +41,7 @@
                     {
                         var pokemonStatistics = p.Statistics;
                         
+                        // Add height and weight to the statistics
                         pokemonStatistics.Insert(0, new Statistic("height", p.Height));
                         pokemonStatistics.Insert(1, new Statistic("weight", p.Weight));
                         
@@ -41,15 +54,18 @@
 
             foreach (var statistic in statistics)
             {
+                // If the statistic already exist in averageStatistics
                 if (averageStatistics.Any(s => s.name == statistic.name))
                 {
                     var averageStatistic = averageStatistics.Find(s => s.name == statistic.name);
 
+                    // Add the current stat to the averageStatistic
                     averageStatistic.stat += statistic.stat;
                     averageStatistic.count++;
                 }
                 else
                 {
+                    // Add new statistic in averageStatistics
                     averageStatistics.Add(statistic);
                 }
             }
@@ -62,6 +78,10 @@
             return averageStatistics;
         }
 
+        /// <summary>
+        /// Get a list of all types.
+        /// </summary>
+        /// <returns>The list of types</returns>
         public static List<Type> GetAll()
         {
             var types = new List<Type>();
