@@ -85,6 +85,32 @@
         }
 
         /// <summary>
+        /// Get a list of all types used in this generation.
+        /// </summary>
+        /// <returns>The list of all types used in this generation</returns>
+        public List<Type> GetTypes()
+        {
+            var types = new List<string>();
+
+            var pokemons = this.GetPokemons();
+
+            foreach (var pokemon in pokemons)
+            {
+                foreach (var type in pokemon.Types)
+                {
+                    if (!types.Contains(type))
+                    {
+                        types.Add(type);
+                    }
+                }
+            }
+
+            return types
+                .Select(type => new Type(type))
+                .ToList();
+        }
+
+        /// <summary>
         /// Get the range of each generation.
         /// </summary>
         /// <returns>The ranges</returns>

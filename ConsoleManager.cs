@@ -19,7 +19,8 @@ namespace Pokedex
                     "\t2. Display Pokemons of a type",
                     "\t3. Display Pokemons of a generation",
                     "\t4. Display a Pokemon of each generation",
-                    "\t5. Display stats on each type of Pokemon"
+                    "\t5. Display a Pokemon of each type for each generation",
+                    "\t6. Display stats on each type of Pokemon"
                 };
 
                 string text = string.Join(Environment.NewLine, strings);
@@ -30,7 +31,7 @@ namespace Pokedex
                 // Substract the 0 ascii code to the pressed key one
                 answer = Console.ReadKey().KeyChar - '0';
             }
-            while (answer < 1 || answer > 5);
+            while (answer < 1 || answer > 6);
 
             Console.Clear();
 
@@ -52,6 +53,9 @@ namespace Pokedex
                     DisplayAPokemonsOfEachGeneration();
                     break;
                 case 5:
+                    DisplayAPokemonsOfEachTypeForEachGeneration();
+                    break;
+                case 6:
                     DisplayStatsOnEachType();
                     break;
             }
@@ -155,6 +159,33 @@ namespace Pokedex
 
                 Console.WriteLine($"{(id > 1 ? '\n' : null)}Generation {id}:");
                 DisplayPokemon(pokemon);
+            }
+        }
+
+        /// <summary>
+        /// Display a pokemon of each type for each generation.
+        /// </summary>
+        private static void DisplayAPokemonsOfEachTypeForEachGeneration()
+        {
+            for (int generationId = 1; generationId <= Generation.GetCount(); generationId++)
+            {
+                var generation = new Generation(generationId);
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{(generationId > 1 ? '\n' : null)}Generation {generationId}:");
+
+                var types = generation.GetTypes();
+
+                foreach (var type in types)
+                {
+                    var pokemon = type.GetRandomPokemon(generationId);
+
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"{Tools.NormalizeCase(type.Name)}:");
+
+                    Console.ResetColor();
+                    DisplayPokemon(pokemon);
+                }
             }
         }
 

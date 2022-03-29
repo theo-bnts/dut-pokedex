@@ -31,6 +31,21 @@
         }
 
         /// <summary>
+        /// Get a random pokemon of this type and of a specific generation.
+        /// </summary>
+        /// <param name="generation">The generation of the Pokemon</param>
+        /// <returns></returns>
+        public Pokemon GetRandomPokemon(int generation)
+        {
+            var pokemons = GetPokemons().Where(p => p.Generation == generation).ToArray();
+
+            var random = new Random();
+            var index = random.Next(0, pokemons.Count());
+
+            return pokemons[index];
+        }
+
+        /// <summary>
         /// Get all statistics for this type.
         /// </summary>
         /// <returns>The list of statistics</returns>
